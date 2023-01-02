@@ -3,7 +3,6 @@ package chapter01.item01;
 /**
  * item01. 생성자 대신 정적 팩터리 메서드를 고려하라.
  * : 생성자의 signature 가 겹치면 정적 팩터리 메서드 생성을 고려해보자.
- *
  */
 public class Order
 {
