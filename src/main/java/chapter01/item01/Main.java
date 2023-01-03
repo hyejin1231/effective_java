@@ -1,8 +1,12 @@
 package chapter01.item01;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
@@ -51,10 +55,10 @@ public class Main
 		
 		EnumSet<OrderStatus> enumSet = EnumSet.allOf(OrderStatus.class);
 		
-		// item02 완벽 공략. flyWeight pattern
+		// item01 완벽 공략. flyWeight pattern
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("원하는 나무 색을 입력하세요 : ");
-		for (int i = 0; i< 10; i++)
+		for (int i = 0; i< 1; i++)
 		{
 			String input = scanner.nextLine();
 			Tree tree = TreeFactory.getTree(input);
@@ -65,6 +69,33 @@ public class Main
 			tree.install();
 		}
 		
+		// item01 완벽 공략. 인터페이스와 정적 메서드
+		// 질문1) 내림차순으로 정렬하는 Comparator를 만들고 List<Integer>를 정렬하라.
+		System.out.println("질문1) 내림차순으로 정렬하는 Comparator를 만들고 List<Integer>를 정렬하라.");
+		List<Integer> list = new ArrayList<>();
+		list.add(100);
+		list.add(80);
+		list.add(30);
+		list.add(70);
+		System.out.println("list = " + list);
+		
+		Comparator<Integer> desc = new Comparator<Integer>()
+		{
+			@Override
+			public int compare(Integer o1, Integer o2)
+			{
+				return o2 - o1;
+			}
+		};
+		
+		Collections.sort(list, desc);
+		
+		System.out.println("list = " + list);
+		
+		// 질문2) 질문1에서 만든 Comparator를 사용해서 오름차순으로 정렬하라.
+		System.out.println("질문2) 질문1에서 만든 Comparator를 사용해서 오름차순으로 정렬하라.");
+		Collections.sort(list, desc.reversed());
+		System.out.println("list = " + list);
 		
 	}
 }
