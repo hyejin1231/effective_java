@@ -6,6 +6,11 @@ package chapter01.item01;
  * 정적 팩터리 메서드를 통해서만 호출하도록 하면, 여러개의 인스턴스를 생성하지 못한다.
  * -> 인스턴스 생성을 통제하겠다는 의미.
  */
+
+/**
+ * 이 클래스의 인스턴스는 #getInstance()를 통해 사용한다.
+ * @see  #getInstance()
+ */
 public class Settings
 {
 	private boolean userAutoSteering;
@@ -21,7 +26,7 @@ public class Settings
 	
 	private static final Settings SETTINGS = new Settings();
 	
-	public static Settings newInstance()
+	public static Settings getInstance()
 	{
 		return SETTINGS;
 	}
