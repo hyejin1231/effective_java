@@ -3,7 +3,9 @@ package chapter01.item01;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.ServiceLoader;
 
 public class Main
@@ -46,6 +48,23 @@ public class Main
 		// 과제) enum을 key로 사용하는 Map을 정의하세요. 또는 enum을 담고 있는 Set을 만들어 보세요. -> EnumSet, EnumMap 사용
 		// map, set보다 훨씬 효율적이다.
 		EnumMap<OrderStatus, String> enumMap = new EnumMap<OrderStatus, String>(OrderStatus.class);
+		
 		EnumSet<OrderStatus> enumSet = EnumSet.allOf(OrderStatus.class);
+		
+		// item02 완벽 공략. flyWeight pattern
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("원하는 나무 색을 입력하세요 : ");
+		for (int i = 0; i< 10; i++)
+		{
+			String input = scanner.nextLine();
+			Tree tree = TreeFactory.getTree(input);
+			
+			tree.setX((int) (Math.random() * 100));
+			tree.setY((int) (Math.random() * 100));
+			
+			tree.install();
+		}
+		
+		
 	}
 }
