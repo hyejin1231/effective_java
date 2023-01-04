@@ -1,5 +1,10 @@
 package chapter01.item01;
 
+/**
+ * item01. 생성자 대신 정적 팩터리 메서드를 고려하라.
+ * 완벽공략 - 서비스 제공자 프레임워크
+ */
+// 서비스 제공자 프레임워크
 public interface HelloService
 {
 	String hello();

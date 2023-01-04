@@ -1,5 +1,7 @@
 package chapter01.item01;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,8 +16,7 @@ import java.util.ServiceLoader;
 
 public class Main
 {
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 		
 		// item01. 장점 2
 		Settings settings = Settings.getInstance();
@@ -96,6 +97,14 @@ public class Main
 		System.out.println("질문2) 질문1에서 만든 Comparator를 사용해서 오름차순으로 정렬하라.");
 		Collections.sort(list, desc.reversed());
 		System.out.println("list = " + list);
-		
+
+
+		// item01 완벽 공략. 리플렉션
+		Class<?> aClass = Class.forName("chapter01.item01.EnglishHelloService");
+		Constructor<?> constructor = aClass.getConstructor();
+		HelloService helloService = (HelloService) constructor.newInstance();
+		System.out.println(helloService.hello());
+
+
 	}
 }
