@@ -12,5 +12,13 @@ public class Main02 {
         chapter01.item02.javabeans.NutritionFacts nutritionFacts1 = new chapter01.item02.javabeans.NutritionFacts();
         nutritionFacts1.setCalories(0);
 
+        // 빌더 패턴
+        chapter01.item02.builder.NutritionFacts cocaCola =
+                new chapter01.item02.builder.NutritionFacts.Builder(240, 8)
+                .calories(100)
+                .sodium(200)
+                .carbohydrate(300).build();
+
+
     }
 }
