@@ -1,6 +1,11 @@
 package chapter01.item02;
 
+import chapter01.item02.hierarchicalbuilder.Calzone;
 import chapter01.item02.hierarchicalbuilder.NutritionFacts;
+import chapter01.item02.hierarchicalbuilder.NyPizza;
+import static chapter01.item02.hierarchicalbuilder.NyPizza.Size.*;
+import chapter01.item02.hierarchicalbuilder.Pizza;
+import static chapter01.item02.hierarchicalbuilder.Pizza.Topping.*;
 
 public class Main02 {
     public static void main(String[] args) {
@@ -18,7 +23,20 @@ public class Main02 {
                 .calories(100)
                 .sodium(200)
                 .carbohydrate(300).build();
-
-
+        
+        // 계층형 빌더 패턴
+        NyPizza pizza = new NyPizza.Builder(SMALL)
+                .addTopping(SAUSAGE)
+                .addTopping(ONION)
+                .build();
+    
+        Calzone calzone = new Calzone.Builder()
+                .addTopping(HAM)
+                .sauceInside()
+                .build();
+    
+        System.out.println("pizza = " + pizza);
+        System.out.println("calzone = " + calzone);
+    
     }
 }
