@@ -22,7 +22,7 @@ public abstract class Pizza
 		public T addTopping(Topping topping) // Builder의 sub클래스에 해당하는 Builder를 리턴하도록
 		{
 			toppings.add(Objects.requireNonNull(topping));
-			return self(); // this 로 사용하면 범위?가 좁아짐
+			return self(); // 하위 클래스에서 형변환 없이 메서드 연쇄 지원 가능 (simulated self-type)
 		}
 		
 		abstract Pizza build();
