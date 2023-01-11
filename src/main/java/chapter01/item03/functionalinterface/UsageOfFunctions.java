@@ -27,5 +27,9 @@ public class UsageOfFunctions
 				.filter(localDatePredicate)
 				.map(getYear)
 				.collect(Collectors.toList());
+		
+		
+		MyFunction lambdaMyfunction = (i) -> String.valueOf(i); // lambda
+		MyFunction myFunction = String::valueOf;
 	}
 }

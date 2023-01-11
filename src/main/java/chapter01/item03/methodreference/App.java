@@ -6,7 +6,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 public class App
@@ -46,6 +48,18 @@ public class App
 		Callable<Person> personCallable = Person::new;
 		Supplier<Person> personSupplier = Person::new;
 		Function<LocalDate, Person> personFunction = Person::new;
+		
+		// 1. 정적 메서드 참조
+		ToIntFunction<String> stringToIntFunction = (String s) -> Integer.parseInt(s); // lambda
+		ToIntFunction<String> stringToIntFunction1 = Integer::parseInt; // method reference
+		
+		// 2. 인스턴스 메서드 참조
+		Person person = new Person();
+		Supplier<Integer> getAge = person::getAge;
+		
+		// 3. 생성자 메서드 참조
+		Function<LocalDate, Person> function = Person::new;
+		Supplier<Person> supplier = Person::new;
 		
 	}
 }
