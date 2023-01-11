@@ -3,6 +3,10 @@ package chapter01.item03.serialization;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * item03. private 생성자 또는 열거타입으로 싱글톤임을 보증하라
+ * 완벽공략 - 직렬화
+ */
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
