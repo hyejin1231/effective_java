@@ -6,6 +6,6 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		SpellChecker spellChecker = new SpellChecker(new DefaultDictionary());
+		SpellChecker spellChecker = new SpellChecker(DefaultDictionary::new);
 	}
 }

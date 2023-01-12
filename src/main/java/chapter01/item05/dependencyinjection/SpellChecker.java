@@ -1,6 +1,7 @@
 package chapter01.item05.dependencyinjection;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import chapter01.item05.Dictionary;
 
@@ -15,9 +16,9 @@ public class SpellChecker
 	private final Dictionary dictionary;
 	
 	// 인스턴스를 생성할 때 필요한 자원을 넘겨주는 방식
-	public SpellChecker(Dictionary dictionary)
+	public SpellChecker(Supplier<? extends Dictionary> factorySupplier) // Supplier<T>가 팩터리를 표현한 완벽한 예
 	{
-		this.dictionary = dictionary;
+		this.dictionary = factorySupplier.get();
 	}
 	
 	public boolean isValid(String word)
