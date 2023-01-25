@@ -11,6 +11,7 @@ public class AutoClosableIsGood implements AutoCloseable{
 
     @Override
     public void close(){
+        // idempotent 해야 한다.(몇번을 호출하더라도 동일한 결과가 수행되어야 한다.) AutoClosable 은 권장, Closeable 필수
         try {
             inputStream.close();
         } catch (IOException e) {
