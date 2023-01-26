@@ -2,7 +2,9 @@ package chapter01.item10.inheritance;
 
 import java.util.Set;
 
+import chapter01.item10.Color;
 import chapter01.item10.Point;
+import chapter01.item10.composition.ColorPoint;
 
 // CounterPoint를 Point로 사용하는 테스트 프로그램
 public class CounterPointTest
@@ -21,7 +23,8 @@ public class CounterPointTest
 	public static void main(String[] args)
 	{
 		Point p1 = new Point(1, 0);
-		Point p2 = new CounterPoint(1, 0);
+//		Point p2 = new CounterPoint(1, 0);
+		Point p2 = new ColorPoint(1, 0, Color.RED).asPoint();
 		
 		System.out.println("onUnitCircle(p1) = " + onUnitCircle(p1)); // true 출력
 		
