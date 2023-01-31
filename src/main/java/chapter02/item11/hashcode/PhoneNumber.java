@@ -61,17 +61,41 @@ public class PhoneNumber
 	
 	// 불변일 때,
 	// 해시코드를 지연 초기화하는 hashCode, 주의할 점은 스레드 안정성까지 고려해야 한다.
-	private int hashCode; // 자동으로 0으로 초기화된다.
+	private volatile int hashCode; // 자동으로 0으로 초기화된다.
+	
+	// 멀티 스레드 안전한 방법
 	@Override
 	public int hashCode()
 	{
-		int result = hashCode;
-		if (result == 0) {
-			result = Short.hashCode(areaCode);
-			result  = 31 * result + Short.hashCode(prefix);
-			result = 31 * result + Short.hashCode(lineNum);
-			hashCode = result;
+		if (this.hashCode != 0) {
+			return hashCode;
 		}
-		return result;
+		
+		synchronized (this) {
+			int result = hashCode;
+			if (result == 0) {
+				result = Short.hashCode(areaCode);
+				result  = 31 * result + Short.hashCode(prefix);
+				result = 31 * result + Short.hashCode(lineNum);
+				hashCode = result;
+			}
+			return result;
+		}
 	}
+	
+	// 스레드 안전해 보이지만 스레드 안전하지는 않았던 코드
+//	@Override
+//	public int hashCode()
+//	{
+//		int result = hashCode;
+//		if (result == 0) {
+//			result = Short.hashCode(areaCode);
+//			result  = 31 * result + Short.hashCode(prefix);
+//			result = 31 * result + Short.hashCode(lineNum);
+//			hashCode = result;
+//		}
+//		return result;
+//	}
+
+
 }
