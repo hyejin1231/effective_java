@@ -51,8 +51,10 @@ public class HashTable implements Cloneable {
 //    }
 
     // deep copy clone
+    // 주의할 점은 clone 메서드 안에서 재정의하는 메서드로 호출해서 하는걸 만들면 안된다.
+    // 하위 클래스에서 오버라이딩하면 바뀔 수 있기 때문이다.
     @Override
-    public HashTable clone() {
+    public synchronized HashTable clone() { // 멀티쓰레드 환경에서 안전해야 한다면 synchronized까지 붙여줘야함
         HashTable result = null;
         try {
             result = (HashTable) super.clone();

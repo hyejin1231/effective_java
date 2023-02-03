@@ -18,6 +18,15 @@ public class PhoneNumber implements Cloneable{
         this.lineNum = rangeCheck(lineNum, 9999, "line num");
         System.out.println("constructor is called !");
     }
+    
+    /**
+     * clone 대안 - copy 생성자를 만드는 방법
+     * @param phoneNumber
+     */
+    public PhoneNumber(PhoneNumber phoneNumber)
+    {
+        this(phoneNumber.areaCode, phoneNumber.prefix, phoneNumber.lineNum);
+    }
 
     // toString이 반환된 값에 포함된 정보를 얻을 수 있는 API를 제공하는 것이 좋다.
     public short getAreaCode()
