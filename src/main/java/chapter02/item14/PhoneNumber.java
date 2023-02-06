@@ -1,5 +1,6 @@
 package chapter02.item14;
 
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -52,18 +53,30 @@ public class PhoneNumber implements Comparable<PhoneNumber>
 	}
 	
 	// 기본 타입 필드가 여럿일 때의 비교자
+//	@Override
+//	public int compareTo(PhoneNumber o)
+//	{
+//		int result = Short.compare(areaCode, o.areaCode);
+//		if (result == 0) {
+//			result = Short.compare(prefix, o.prefix);
+//
+//			if (result == 0) {
+//				result = Short.compare(lineNum, o.lineNum);
+//			}
+//		}
+//		return result;
+//	}
+	
+	// 비교자 생성 메서드를 활용한 비교자
+	private static final Comparator<PhoneNumber> COMPARATOR =
+			Comparator.comparingInt((PhoneNumber pn) -> pn.areaCode)
+			.thenComparing(pn -> pn.prefix)
+			.thenComparing(pn -> pn.lineNum);
+	
 	@Override
-	public int compareTo(PhoneNumber o)
+	public int compareTo(PhoneNumber pn)
 	{
-		int result = Short.compare(areaCode, o.areaCode);
-		if (result == 0) {
-			result = Short.compare(prefix, o.prefix);
-			
-			if (result == 0) {
-				result = Short.compare(lineNum, o.lineNum);
-			}
-		}
-		return result;
+		return COMPARATOR.compare(this, pn);
 	}
 	
 	private static PhoneNumber randomPhoneNumber()
