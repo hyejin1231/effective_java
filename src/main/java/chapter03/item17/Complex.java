@@ -10,7 +10,7 @@ import java.util.Objects;
  * - 불변 객체는 안심하고 공유할 수 있다.
  * - 실패 원자성을 제공한다.
  */
-public final class Complex
+public /*final*/ class Complex
 {
 	private final double re;
 	private final double im;
@@ -21,7 +21,7 @@ public final class Complex
 	
 	public static final Complex I = new Complex(0, 1);
 	
-	public Complex(double re, double im)
+	private Complex(double re, double im) // private 또는 package-private 생성자를 사용해서도 상속을 막을 수 있다.
 	{
 		this.re = re;
 		this.im = im;
@@ -42,9 +42,20 @@ public final class Complex
 		return new Complex(re + complex.re , im + complex.im);
 	}
 	
+	/** private 생성자를 사용하면 인스턴스를 만들 수 없는데.. 그렇다면 이 클래스는 어떻게 사용하는가?
+	 * -> 정적팩터리를 사용
+	 */
 	public static Complex valueOf(double re, double im)
 	{
 		return new Complex(re, im);
+	}
+	
+	private static class MyComplex extends Complex
+	{
+		private MyComplex(double re, double im)
+		{
+			super(re, im);
+		}
 	}
 	
 	public Complex minus(Complex complex)
