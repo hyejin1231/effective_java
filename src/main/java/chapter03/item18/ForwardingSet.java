@@ -8,7 +8,7 @@ import java.util.Set;
  * item18. 상속보다는 컴포지션을 사용하라.
  * 재사용할 수 있는 전달 클래스
  */
-public class ForwardingSet<E> implements Set<E>
+public class ForwardingSet<E> implements Set<E> // Set이 Component, ForwardingSet이 decorator
 {
 	private final Set<E> s;
 	

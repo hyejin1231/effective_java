@@ -9,7 +9,7 @@ import java.util.Set;
  * item18. 상속보다는 컴포지션을 사용하라.
  * 상속대신 컴포지션을 사용한 클래스
  */
-public class InstrumentedSet<E> extends ForwardingSet<E>
+public class InstrumentedSet<E> extends ForwardingSet<E> // InstrumentedSet이 concreate decorator
 {
 	private int addCount = 0;
 	public InstrumentedSet(Set<E> s)
@@ -38,7 +38,7 @@ public class InstrumentedSet<E> extends ForwardingSet<E>
 	
 	public static void main(String[] args)
 	{
-		InstrumentedSet<String> s = new InstrumentedSet<>(new HashSet<>());
+		InstrumentedSet<String> s = new InstrumentedSet<>(new HashSet<>()); // HashSet이 ConcreateComponent
 		s.addAll(List.of("틱", "탁탁", "펑"));
 		System.out.println("s.getAddCount() = " + s.getAddCount());
 	}
