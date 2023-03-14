@@ -21,6 +21,7 @@ public class MySet<E> extends AbstractSet<E>
 		return 0;
 	}
 	
+	// 어댑터 패턴
 	private class MyIterator implements Iterator<E>
 	{
 		@Override
