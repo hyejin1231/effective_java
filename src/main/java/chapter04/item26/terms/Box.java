@@ -18,6 +18,7 @@ public class Box<E /*extends Number*/> { // 제네릭 클래스 <E> : 타입 매
     public static void main(String[] args) {
         Box<Integer> box = new Box<>(); // <Integer> : 실제 타입 매개변수
         box.add(10);
+        System.out.println(box.get() * 100);
         printBox(box);
 
     }
