@@ -17,5 +17,13 @@ public class IntegerToString
 		// 불공변
 		List<String> names = new ArrayList<>();
 //		List<Object> objects = names; // List<String>을 List<Object>에 넣을 수 없다. compile error 발생
+		
+		// 제네릭과 배열은 같이 사용할 수 없다.
+//		List<String>[] stringLists = new ArrayList<String>[1];
+//		List<Integer> intList = List.of(42);
+//		Object[] objects = stringLists;
+//		objects[0] = intList;
+//		String s = stringLists[0].get(0); // error 발생
+//		System.out.println("s = " + s);
 	}
 }
