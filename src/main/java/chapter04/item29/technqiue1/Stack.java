@@ -62,7 +62,7 @@ public class Stack<E>
 		{
 			stack.push(arg);
 		}
-		while (stack.isEmpty())
+		while (!stack.isEmpty())
 		{
 			System.out.println(stack.pop().toUpperCase());
 		}

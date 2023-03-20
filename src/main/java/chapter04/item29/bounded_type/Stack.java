@@ -1,4 +1,4 @@
-package chapter04.item29.technquie2;
+package chapter04.item29.bounded_type;
 
 import java.util.Arrays;
 import java.util.EmptyStackException;
@@ -6,17 +6,17 @@ import java.util.List;
 
 /**
  * item29. 이왕이면 제네릭 타입으로 만들라.
- * Object[]를 이용한 제네릭 Stack
+ * 완벽공략 - 한정적 타입 매개변수
  */
-public class Stack<E>
+public class Stack<E extends Number>
 {
-	private Object[] elements;
+	private Number[] elements;
 	private int size = 0;
 	private static final int DEFAULT_INITIAL_CAPACTIY = 16;
 	
 	public Stack()
 	{
-		elements = new Object[DEFAULT_INITIAL_CAPACTIY];
+		elements = new Number[DEFAULT_INITIAL_CAPACTIY];
 	}
 	
 	public void push(E e)
@@ -25,18 +25,15 @@ public class Stack<E>
 		elements[size++] = e;
 	}
 	
-	// 배열을 사용한 코드를 제네릭으로 만드는 방법 2
-	// 비검사 경고를 적절히 숨긴다.
 	public E pop()
 	{
 		if (size == 0) {
 			throw new EmptyStackException();
 		}
-
-		// push에서 E 타입만 허용하므로 이 형변환은 안전하다.
+		
 		@SuppressWarnings("unchecked")
 		E result = (E) elements[--size];
-		elements[size] = null; // 다 쓴 참조 해제
+		elements[size] = null;
 		return result;
 	}
 	
@@ -55,14 +52,14 @@ public class Stack<E>
 	
 	public static void main(String[] args)
 	{
-		Stack<String> stack = new Stack<>();
-		for (String arg : List.of("a", "b", "c"))
+		Stack<Integer> stack = new Stack<>();
+		for (Integer arg : List.of(1, 2, 3))
 		{
 			stack.push(arg);
 		}
 		while (!stack.isEmpty())
 		{
-			System.out.println(stack.pop().toUpperCase());
+			System.out.println(stack.pop());
 		}
 	}
 }
